@@ -58,6 +58,22 @@ class Student{
 
 }
 
+class GraduateStudent extends Student{
+    private String labName; //연구실
+    private String advisor; //지도교수
+
+    public GraduateStudent(String name, String labName, String advisor){
+        super(name);
+        this.labName = labName;
+        this.advisor = advisor;
+    }
+}
+
+
+
+
+
+
 
 public class Main {
     public static void main(String[] args) {
