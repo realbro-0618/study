@@ -67,6 +67,15 @@ class GraduateStudent extends Student{
         this.labName = labName;
         this.advisor = advisor;
     }
+
+    @Override
+    public void showInfo(){
+        super.showInfo();
+        System.out.println("연구실 : " + labName);
+        System.out.println("지도교수 : " + advisor);
+        System.out.println("구분 : 대학원생");
+        System.out.println("----------------------------------");
+    }
 }
 
 
@@ -81,18 +90,36 @@ public class Main {
 
         ArrayList<Student> studentList = new ArrayList<>();
 
+
+
         while(true){
             System.out.println("\n=== 폴리텍 학적 관리 시스템 ===");
             System.out.println("1. 학생 등록 | 2. 성적/정보 수정 | 3. 전체 명단 출력 | 4. 종료");
             System.out.println("메뉴 선택 : ");
             String menu = sc.nextLine();
             if (menu.equals("1")){
-                System.out.print("등록할 학생의 이름을 입력 : ");
-                String name = sc.nextLine();
-                Student newStudent = new Student(name);
+                System.out.print("(1)대학생  (2)대학원생  >>  ");
+                String input_str = sc.nextLine();
+                if(input_str.equals("1")){
+                    System.out.print("등록할 학생의 이름을 입력 : ");
+                    String name = sc.nextLine();
+                    Student newStudent = new Student(name);
 
-                studentList.add(newStudent);
-                System.out.println("학생이 등록되었습니다.");
+                    studentList.add(newStudent);
+                    System.out.println("학생이 등록되었습니다.");
+                }
+                else if(input_str.equals("2")){
+                    System.out.print("등록할 학생의 이름을 입력 : ");
+                    String name = sc.nextLine();
+                    System.out.print("연구실 입력 : ");
+                    String labName = sc.nextLine();
+                    System.out.print("지도교수님 입력 : ");
+                    String advisor = sc.nextLine();
+                    Student newStudent = new GraduateStudent(name,labName,advisor);
+
+                    studentList.add(newStudent);
+                    System.out.println("학생이 등록되었습니다.");
+                }
             }else if(menu.equals("2")){
                 boolean goto_main = false;
                 while(!goto_main) {
@@ -192,6 +219,8 @@ public class Main {
             }
 
         }
+
+
         sc.close();
     }
 }
